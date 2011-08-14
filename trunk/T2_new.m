@@ -14,7 +14,8 @@ else
 end
 
 %%%% we will find here t=0 point
-t0_point_ind = find(T2(:, 1) == 0, 1 );
+t0_point = find(T2(:, 1) >0, 1 );
+t0_point_ind = t0_point(1)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31,15 +32,21 @@ deriv_Volt = [0; deriv_Volt];
 %% should add afterwards
 %% we'll detect zero-crossing:
 zerocross_list = [];
-j=1;
+j=1
 for i = t0_point_ind:length(T2(:,2))
     if(sign(deriv_Volt(i)) > sign(deriv_Volt(i+1)))
-        zerocross_list(j) = i+t0_point_ind; %we are saving the 'before' point
+        zerocross_list(j) = i+t0_point_ind %we are saving the 'before' point
     end
 end
 %now we will look for the maximum in several (neib_points) points
-local_maxima = [];
-for k = 1:length(zerocross_list)
-    local_maxima(i) = max()
+local_maxima_x = [];
+local_maxima_y = [];
+l = 1;
+for k = 1:jump:length(zerocross_list)
+    [C I] = max(T2(zerocross_list(k)-neib_points:zeroicross_list(k)+neib_points, 2));
+    local_maxima_y (l) = C;
+    local_maxima_x (l) = T2(I+zerocross_list(k), 1);
+    l = l+1;
 end
-
+figure;
+plot(local_maxima_x, local_maxima_y);
