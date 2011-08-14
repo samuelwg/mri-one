@@ -3,7 +3,7 @@ clear all;
 close all;
 clc;
 
-%%% Ferromagnetic Constant calculation
+%%% Gyromagnetic Ratio calculation
 
 B0 = [3.6 3.56 3.59 3.60 3.53];
 freq = [(15.27257+15.27198)/2 (15.29292+15.29306)/2 (15.29660+15.29764)/2 (15.30097+15.30002)/2 (15.30392+15.30260)/2]
@@ -11,7 +11,7 @@ gamma = freq./B0;
 conc = [8 4 1 0.5 0.25];
 figure;
 plot(conc, gamma, 'o')
-title('Feromagnetic Constant as function of concentration');
+title('Gyromagnetic Ratio as function of concentration');
 xlabel('Concentration, perc');
 ylabel('\gamma [mHz/kG]');
 

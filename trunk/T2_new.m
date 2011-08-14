@@ -1,6 +1,7 @@
 function [ M0, T2_res, R_square percentage ] = T2_new( file_name, CPMG )
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
+neib_points = 3;
 T2 = load (file_name);
 sol_perc_num = filename_parser (file_name);
 
@@ -11,6 +12,10 @@ else
     exper = 'CP';
     jump  = 1;
 end
+
+%%%% we will find here t=0 point
+t0_point_ind = find(T2(:, 1) == 0, 1 );
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%T2 Calculation %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -25,6 +30,16 @@ deriv_Volt = diff(T2(:, 2))./diff(T2(:,1)); % we obtained the differential
 deriv_Volt = [0; deriv_Volt];
 %% should add afterwards
 %% we'll detect zero-crossing:
-for i = 
+zerocross_list = [];
+j=1;
+for i = t0_point_ind:length(T2(:,2))
+    if(sign(deriv_Volt(i)) > sign(deriv_Volt(i+1)))
+        zerocross_list(j) = i+t0_point_ind; %we are saving the 'before' point
+    end
+end
+%now we will look for the maximum in several (neib_points) points
+local_maxima = [];
+for k = 1:length(zerocross_list)
+    local_maxima(i) = max()
 end
 
