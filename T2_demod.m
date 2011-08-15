@@ -1,0 +1,1 @@
+function [ M0, T2_res, R_square percentage ] = T2_demod( file_name, CPMG )
