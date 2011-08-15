@@ -23,6 +23,7 @@ max_Voltage = C;
 t_delay = T2(I, 1);
 figure;
 plot(T2(:,1), T2(:, 2));
+title(file_name);
 deriv_Volt = diff(T2(:, 2))./diff(T2(:,1)); % we obtained the differential
 deriv_Volt = [0; deriv_Volt];
 Threshold = find_thresh(deriv_Volt);
