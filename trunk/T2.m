@@ -1,4 +1,4 @@
-function [ M0, T2_res, R_square percentage ] = T2( file_name, CPMG)
+function [ M0, T2_res, R_square percentage ] = T2( file_name, CPMG, iter)
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
 const_diff = 20;
@@ -33,10 +33,10 @@ end
 [C I] = max (T2(:,2));
 max_Voltage = C;
 t_delay = T2(I, 1);
-figure;
-plot(T2(:,1), T2(:, 2));
-title(file_name);
-hold on;
+% figure;
+% plot(T2(:,1), T2(:, 2));
+% title(file_name);
+% hold on;
 deriv_Volt = diff(T2(:, 2))./diff(T2(:,1)); % we obtained the differential
 deriv_Volt = [0; deriv_Volt];
 Threshold = find_thresh(deriv_Volt);
@@ -53,11 +53,11 @@ for i = 1:length(d_deriv_border)-1
         i1= i1 +1;
     end
 end
-d_deriv_border = d_deriv_border_new;
-plot(T2(d_deriv_border,1),T2(d_deriv_border, 2), 'ro');
+% d_deriv_border = d_deriv_border_new;
+% plot(T2(d_deriv_border,1),T2(d_deriv_border, 2), 'ro');
 
-figure;
-plot(T2(:,1), deriv_Volt);
+% figure;
+% plot(T2(:,1), deriv_Volt);
 j = 1;
 for i=1:jump:length(d_deriv_border)-1
     [C I] = max (T2(d_deriv_border(i):d_deriv_border(i+1), 2));
@@ -65,10 +65,10 @@ for i=1:jump:length(d_deriv_border)-1
     T_2_res_x(j) = T2(I+d_deriv_border(i), 1);
     j = j + 1;
 end
-figure;
-plot (T_2_res_x, T_2_res_y);
-title (['T_2 calculation out of ',num2str(sol_perc_num),'% ', exper,' experiment']);
-legend ([exper, ' experimental data']);
+% figure;
+% plot (T_2_res_x, T_2_res_y);
+% title (['T_2 calculation out of ',num2str(sol_perc_num),'% ', exper,' experiment']);
+% legend ([exper, ' experimental data']);
 % hold on
 % 
 % s2 = fitoptions('Method', 'NonlinearLeastSquares','Lower',[0, 0],'Upper', [Inf, Inf], 'Startpoint',[1e-6, max_Voltage]);
@@ -82,7 +82,7 @@ legend ([exper, ' experimental data']);
 
 % for a comparison we'll try to perform fit for the linear function after
 % logarithm evauation
-figure;
+subplot(2,3, iter);
 plot (T_2_res_x, log(T_2_res_y), 'o');
 title (['T_2 calculation out of ', num2str(sol_perc_num),'% ', exper,'experiment (linear fitting curve)'])
 legend ('experimental data')

@@ -20,12 +20,13 @@ saveas(h1, 'gmagnet.pdf');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 T1_list = dir ('T1*.csv');
+figure;
 for i=1:length(T1_list)
-    [T1_results(i,1), T1_results(i,2), T1_results(i,3), T1_results(i,4)] = T1(T1_list(i).name);
+    [T1_results(i,1), T1_results(i,2), T1_results(i,3), T1_results(i,4)] = T1(T1_list(i).name, i);
 end
 
 %%% we are going to plot T_1 as function of concentration
-figure;
+subplot(2,3, i+1);
 plot (T1_results(:,4), T1_results(:,2));
 title ('T_1 as function of concentration of CuSo_4 ');
 xlabel('Concentration, perc');
@@ -33,13 +34,13 @@ ylabel('T_1, [msec]');
 
 
 T2_star_list = dir ('T2_star*.csv');
-
+h2 = figure;
 for i=1:length(T2_star_list)
-    [T2_star_results(i,1), T2_star_results(i,2), T2_star_results(i,3), T2_star_results(i,4)] = T2_star(T2_star_list(i).name);
+    [T2_star_results(i,1), T2_star_results(i,2), T2_star_results(i,3), T2_star_results(i,4)] = T2_star(T2_star_list(i).name, i);
 end
 
 %%% we are going to plot T_1 as function of concentration
-h2 = figure;
+subplot (2,3,i+1)
 plot (T2_star_results(:,4), T2_star_results(:,2), 'o');
 title ('{T_2}^* as function of concentration of CuSo_4 ');
 xlabel('Concentration, perc');
@@ -49,25 +50,25 @@ saveas (h2, 'T2starres.pdf');
 
 
 T2_list = dir ('TT2_*CPMG.csv');
-
+h3 = figure;
 for i=1:length(T2_list)
-    [T2_results_CPMG(i,1), T2_results_CPMG(i,2), T2_results_CPMG(i,3), T2_results_CPMG(i,4)] = T2(T2_list(i).name, 1);
+    [T2_results_CPMG(i,1), T2_results_CPMG(i,2), T2_results_CPMG(i,3), T2_results_CPMG(i,4)] = T2(T2_list(i).name, 1, i);
 end
 
 %% Now we'll plot T2 as a function of concentration
-figure;
+subplot (2,3, i+1);
 plot (T2_results_CPMG(:,4), T2_results_CPMG(:,2), '-o');
 title ('{T_2} (CPMG sequence) as function of concentration of CuSo_4 ');
 xlabel('Concentration, perc');
 ylabel('{T_2}, [sec]');
 
 T2_CP_list = dir ('TT2_*CP.csv');
-
+h4 = figure;
 for i=1:length(T2_CP_list)
-    [T2_results_CP(i,1), T2_results_CP(i,2), T2_results_CP(i,3), T2_results_CP(i,4)] = T2(T2_CP_list(i).name, 0);
+    [T2_results_CP(i,1), T2_results_CP(i,2), T2_results_CP(i,3), T2_results_CP(i,4)] = T2(T2_CP_list(i).name, 0, i);
 end
 %% Now we'll plot T2 as a function of concentration
-figure;
+subplot (2,3, i+1);
 plot (T2_results_CP(:,4), T2_results_CP(:,2), '-o');
 title ('{T_2} (CP sequence) as function of concentration of CuSo_4 ');
 xlabel('Concentration, perc');

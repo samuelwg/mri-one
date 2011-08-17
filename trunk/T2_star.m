@@ -1,4 +1,4 @@
-function [ M0, T2_res, R_square percentage ] = T2_star( file_name )
+function [ M0, T2_res, R_square percentage ] = T2_star( file_name, iterator )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 T2_star = load (file_name);
@@ -10,7 +10,7 @@ sol_perc_num = filename_parser (file_name);
 max_Voltage = C;
 ind_start = I + 50; % it is the moment we are starting to fit
 t_delay = T2_star(ind_start, 1);
-figure;
+subplot(2, 3, iterator);
 plot(T2_star(ind_start:ind_start+820,1), ((T2_star(ind_start:ind_start+820, 2)- T2_star(end, 2))));
 legend('experimental data');
 hold on
