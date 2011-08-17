@@ -54,10 +54,21 @@ for i=1:length(T2_list)
     [T2_results_CPMG(i,1), T2_results_CPMG(i,2), T2_results_CPMG(i,3), T2_results_CPMG(i,4)] = T2(T2_list(i).name, 1);
 end
 
-
+%% Now we'll plot T2 as a function of concentration
+figure;
+plot (T2_results_CPMG(:,4), T2_results_CPMG(:,2), '-o');
+title ('{T_2} (CPMG sequence) as function of concentration of CuSo_4 ');
+xlabel('Concentration, perc');
+ylabel('{T_2}, [sec]');
 
 T2_CP_list = dir ('TT2_*CP.csv');
 
 for i=1:length(T2_CP_list)
     [T2_results_CP(i,1), T2_results_CP(i,2), T2_results_CP(i,3), T2_results_CP(i,4)] = T2(T2_CP_list(i).name, 0);
 end
+%% Now we'll plot T2 as a function of concentration
+figure;
+plot (T2_results_CP(:,4), T2_results_CP(:,2), '-o');
+title ('{T_2} (CP sequence) as function of concentration of CuSo_4 ');
+xlabel('Concentration, perc');
+ylabel('{T_2}, [sec]');
