@@ -87,7 +87,11 @@ firstly, the gyromagnetic ratio was calculated out of the given experiment
 \begin_inset Formula $\omega_{o}$
 \end_inset
 
- (the Larmor percession frequency) was found
+ (the Larmor percession frequency) was found by the following formula: 
+\begin_inset Formula $\gamma=\frac{\omega_{0}}{B_{0}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -126,7 +130,92 @@ at last
 \end_inset
 
  was found out of two experiment datasets (CP and CPMG) by finding the points
- on the signal envelope and 
+ on the signal envelope, calculating the logarithm and fitting them into
+ the linear model
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Gyromagnetic ratio calculation results
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename gmagnet.pdf
+	display false
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset Formula $T_{2}^{*}$
+\end_inset
+
+ calculation results
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename T2starres.pdf
+	display false
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body

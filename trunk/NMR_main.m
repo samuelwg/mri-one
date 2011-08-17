@@ -9,12 +9,12 @@ B0 = [3.6 3.56 3.59 3.60 3.53];
 freq = [(15.27257+15.27198)/2 (15.29292+15.29306)/2 (15.29660+15.29764)/2 (15.30097+15.30002)/2 (15.30392+15.30260)/2]
 gamma = freq./B0;
 conc = [8 4 1 0.5 0.25];
-figure;
+h1 = figure;
 plot(conc, gamma, 'o')
 title('Gyromagnetic Ratio as function of concentration');
 xlabel('Concentration, perc');
 ylabel('\gamma [mHz/kG]');
-
+saveas(h1, 'gmagnet.pdf');
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -39,12 +39,12 @@ for i=1:length(T2_star_list)
 end
 
 %%% we are going to plot T_1 as function of concentration
-figure;
+h2 = figure;
 plot (T2_star_results(:,4), T2_star_results(:,2), 'o');
 title ('{T_2}^* as function of concentration of CuSo_4 ');
 xlabel('Concentration, perc');
 ylabel('{T_2}^*, [sec]');
-
+saveas (h2, 'T2starres.pdf');
 
 
 
