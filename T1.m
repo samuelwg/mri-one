@@ -1,4 +1,4 @@
-function [ M0, T1_res, R_square, percentage] = T1( file_name )
+function [ M0, T1_res, R_square, percentage] = T1( file_name, iterator )
 %   The function calculates 
 %   Detailed explanation goes here
 
@@ -9,7 +9,7 @@ sol_perc_num = filename_parser (file_name);
 
 
 T1 = load(file_name);
-figure;
+subplot(2,3, iterator);
 plot(T1(:,2),T1(:,1), 'r*');
 title (['T_1 experiment for ', num2str(sol_perc_num),'% solution: Inversion recovery']);
 legend ('Experimental data')
