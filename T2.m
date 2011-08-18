@@ -53,8 +53,8 @@ for i = 1:length(d_deriv_border)-1
         i1= i1 +1;
     end
 end
-% d_deriv_border = d_deriv_border_new;
-% plot(T2(d_deriv_border,1),T2(d_deriv_border, 2), 'ro');
+ d_deriv_border = d_deriv_border_new;
+ %plot(T2(d_deriv_border,1),T2(d_deriv_border, 2), 'ro');
 
 % figure;
 % plot(T2(:,1), deriv_Volt);
@@ -84,7 +84,7 @@ end
 % logarithm evauation
 subplot(2,3, iter);
 plot (T_2_res_x, log(T_2_res_y), 'o');
-title (['T_2 calculation out of ', num2str(sol_perc_num),'% ', exper,'experiment (linear fitting curve)'])
+title (['T_2 calculation out of ', num2str(sol_perc_num),'% ', exper,' experiment (linear fitting curve)'])
 legend ('experimental data')
 hold on
 
@@ -94,7 +94,7 @@ h5 = fittype ('poly1');
 plot(c5, 'k');
 xlabel ('t [sec]');
 ylabel ('ln(M_{trans}) [Volt]');
-text ('String', {strcat(' Fit results: M_0=', num2str(exp(c5.p2))), strcat(' {T_2}=', num2str(-1/c5.p1))});
+%text ('String', {strcat(' Fit results: M_0=', num2str(exp(c5.p2))), strcat(' {T_2}=', num2str(-1/c5.p1))});
 
 M0 = exp(c5.p2);
 T2_res = -1/c5.p1;

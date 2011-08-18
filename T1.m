@@ -31,8 +31,8 @@ h = fittype('abs(M0*(1-2*exp(-x/T1)))', 'coefficients', {'M0', 'T1'}, 'independe
 plot(c, 'k');
 xlabel ('T_I [msec]');
 ylabel ('M_{trans}(T_I) [msec]');
-text (...%'Position', [10, 200], 
-    'String', strcat(' Fit results: M_0=', num2str(c.M0), ' T_1=', num2str(c.T1)))
+%text (...%'Position', [10, 200], 
+%    'String', strcat(' Fit results: M_0=', num2str(c.M0), ' T_1=', num2str(c.T1)))
 M0 = c.M0;
 T1_res = c.T1;
 R_square = gof.rsquare;

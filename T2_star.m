@@ -25,7 +25,7 @@ h1 = fittype ('M0*exp(-(t-t_del)/T_2_star)', 'coefficients', {'T_2_star', 'M0'},
 plot (c1, 'k');
 xlabel ('t [sec]');
 ylabel ('M_{trans} [Volt]');
-text ('String', {strcat(' Fit results: M_0=', num2str(c1.M0)), strcat(' {T_2}^*=', num2str(c1.T_2_star))});
+%text ('String', {strcat(' Fit results: M_0=', num2str(c1.M0)), strcat(' {T_2}^*=', num2str(c1.T_2_star))});
 title (['{T_2}^* experiment for ', num2str(sol_perc_num),'% solution: FID']);
 
 M0 = c1.M0;
