@@ -1,7 +1,8 @@
 function [offset] = noise_eval(file_name)
 noise_sig = load (file_name);
-noise_beg = length(noise_sig)-2000;
-noise_sig_part = noise_sig(noise_beg:end, 2);
+zero_beg = find_zero1000(noise_sig)
+%noise_beg = length(noise_sig)-1000;
+noise_sig_part = noise_sig(zero_beg:end, 2);
 %figure;
 %subplot(4,1,1);
 % plot(noise_sig_part, '.');
