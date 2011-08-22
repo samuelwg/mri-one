@@ -331,5 +331,25 @@ status collapsed
 
 \end_layout
 
+\begin_layout Section
+Noise
+\end_layout
+
+\begin_layout Standard
+As the following results predict there is no actual way to model the noise
+ distribution due to low sensitivity of oscilloscope comparing with the
+ noise levels.
+ No autocorrelation is observed as well.
+ Thus the only use of the raw noise data could be by evaluating the zero-offset
+ of the data by calculating the mean noise level, when 
+\begin_inset Formula $t\rightarrow\infty$
+\end_inset
+
+ and attenuating our data accordingly.
+ The one could suppose that the application of low-pass filter (such as
+ for example moving average filter) could improve the SNR, yet in this case
+ obviously the resulting values are affected as well.
+\end_layout
+
 \end_body
 \end_document

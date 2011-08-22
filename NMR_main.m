@@ -76,3 +76,8 @@ title ('{T_2} (CP sequence) as function of concentration of CuSo_4 ');
 xlabel('Concentration, perc');
 ylabel('{T_2}, [sec]');
 export_fig(h4,'T2_CPres.pdf')
+
+Ts_list = dir ('*T2*.csv');
+for i = 1:length(Ts_list)
+    a(i) = noise_eval(Ts_list(i).name)
+end
