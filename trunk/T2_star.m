@@ -1,4 +1,4 @@
-function [ M0, T2_res, R_square percentage ] = T2_star( file_name, iterator )
+function [ M0, T2_res, R_square percentage ] = T2_star( file_name, iterator, points_num )
 %UNTITLED2 Summary of this function goes here
 %   Detailed explanation goes here
 T2_star = load (file_name);
@@ -9,6 +9,15 @@ sol_perc_num = filename_parser (file_name);
 offset = noise_eval(file_name);
 T2_star(:,2) = T2_star(:,2)-offset;
 
+if (points_num == 0)
+    T2_star_filt = T2_star;
+else
+    windowSize = points_num;
+    T2_star_filt(:,2) = filter(ones(1,windowSize)/windowSize,1,T2_star(:,2));
+    T2_star_filt(:,1) = T2_star(:,1);
+end
+
+T2_star = T2_star_filt;
 [C I] = max (T2_star(:,2));
 max_Voltage = C;
 ind_start = I + 50; % it is the moment we are starting to fit
@@ -18,7 +27,7 @@ plot(T2_star(ind_start:ind_start+820,1), ((T2_star(ind_start:ind_start+820, 2)- 
 legend('experimental data');
 hold on
 
-signal_fft = fft(T2_star(:,2))/(length(T2_star(:,2))-ind_start);
+%signal_fft = fft(T2_star(:,2))/(length(T2_star(:,2))-ind_start);
 
 s1 = fitoptions('Method', 'NonlinearLeastSquares','Lower',[0, 0],'Upper', [Inf, Inf], 'Startpoint',[1e-6, max_Voltage-T2_star(end, 2)]);
 

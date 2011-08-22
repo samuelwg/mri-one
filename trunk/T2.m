@@ -1,4 +1,4 @@
-function [ M0, T2_res, R_square percentage ] = T2( file_name, CPMG, iter)
+function [ M0, T2_res, R_square percentage ] = T2( file_name, CPMG, iter, points_num)
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
 const_diff = 20;
@@ -18,11 +18,19 @@ offset = noise_eval(file_name);
 T2(:,2) = T2(:,2)-offset;
 
 
-
 %%%% looking for t=0
 t0_point = find(T2(:, 1) >0, 1 );
 t0_point_ind = t0_point(1)
 T2 = T2(t0_point_ind:end, :);
+
+%%% now we will apply moving average filter (FIR LP) %%%%
+if (points_num == 0)
+    T2_filt = T2;
+else
+    windowSize = points_num;
+    T2_filt(:,2) = filter(ones(1,windowSize)/windowSize,1,T2(:,2))
+end
+
 
 %%% if this is 1% solution, the final point is 0.06
 if (sol_perc_num == 1)
@@ -65,7 +73,7 @@ end
 % plot(T2(:,1), deriv_Volt);
 j = 1;
 for i=1:jump:length(d_deriv_border)-1
-    [C I] = max (T2(d_deriv_border(i):d_deriv_border(i+1), 2));
+    [C I] = max (T2_filt(d_deriv_border(i):d_deriv_border(i+1), 2));
     T_2_res_y(j) = C;
     T_2_res_x(j) = T2(I+d_deriv_border(i), 1);
     j = j + 1;
@@ -89,7 +97,7 @@ end
 % logarithm evauation
 subplot(2,3, iter);
 plot (T_2_res_x, log(T_2_res_y), 'o');
-title (['T_2 calculation out of ', num2str(sol_perc_num),'% ', exper,' experiment (linear fitting curve)'])
+title (['T_2 calculation out of ', num2str(sol_perc_num),'% ', exper,' experiment (linear fitting curve) MA-filtered ', points_num, ' points'])
 legend ('experimental data')
 hold on
 

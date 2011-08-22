@@ -1,4 +1,4 @@
-function [ M0, T2_res, R_square percentage ] = T2_filt( file_name, CPMG, iter, points_num)
+function [ M0, T2_res, R_square percentage ] = T2( file_name, CPMG, iter, points_num)
 %UNTITLED4 Summary of this function goes here
 %   Detailed explanation goes here
 const_diff = 20;
