@@ -81,3 +81,22 @@ Ts_list = dir ('*T2*.csv');
 for i = 1:length(Ts_list)
     a(i) = noise_eval(Ts_list(i).name)
 end
+
+
+%%% now we will compare results with an moving average (3 & 5 points) filter %%%%%
+
+T2_list = dir ('TT2_*CPMG.csv');
+h7 = figure('PaperOrientation', 'landscape','position', pos, 'Color', 'white');
+for i=1:length(T2_list)
+    [T2_results_CPMG(i,1), T2_results_CPMG(i,2), T2_results_CPMG(i,3), T2_results_CPMG(i,4)] = T2_filt(T2_list(i).name, 1, i, 7);
+end
+
+%% Now we'll plot T2 as a function of concentration
+subplot (2,3, i+1);
+plot (T2_results_CPMG(:,4), T2_results_CPMG(:,2), '-o');
+title ('{T_2} (CPMG sequence) as function of concentration of CuSo_4 fitered 5p');
+xlabel('Concentration, perc');
+ylabel('{T_2}, [sec]');
+export_fig(h7, 'T2_CPMGres_filt.pdf')
+
+

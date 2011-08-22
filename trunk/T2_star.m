@@ -5,6 +5,9 @@ T2_star = load (file_name);
 
 sol_perc_num = filename_parser (file_name);
 
+%%% adding offset correction %%%%
+offset = noise_eval(file_name);
+T2_star(:,2) = T2_star(:,2)-offset;
 
 [C I] = max (T2_star(:,2));
 max_Voltage = C;
