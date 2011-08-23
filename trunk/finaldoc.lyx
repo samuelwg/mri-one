@@ -341,10 +341,10 @@ As the following results predict there is no actual way to model the noise
  The one could suppose that the application of low-pass filter (such as
  for example moving average filter) could improve the SNR, yet in this case
  one may think the resulting values are affected as well.
- Yet as it could be seen in the results, while applying moving average filter
- on the CPMG results, as the filter length grows and its smoothing features
- being emphasized and the fit goodness is improved significantly only the
- tiniest change in 
+ Interestingly as it could be seen in the results, while applying moving
+ average filter on the CPMG results, as the filter length grows and its
+ smoothing features being emphasized and the fit goodness is improved significan
+tly only the tiniest change in 
 \begin_inset Formula $T_{2}$
 \end_inset
 
