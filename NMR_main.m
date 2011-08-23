@@ -8,6 +8,8 @@ clc;
 
 B0 = [3.6 3.56 3.59 3.60 3.53];
 freq = [(15.27257+15.27198)/2 (15.29292+15.29306)/2 (15.29660+15.29764)/2 (15.30097+15.30002)/2 (15.30392+15.30260)/2]
+freq_err =  [abs(15.27257-15.27198) abs(15.29292-15.29306) abs(15.29660-15.29764) abs(15.30097-15.30002) abs(15.30392-15.30260)]
+B_err = [0.01+0.4*0.04 0.01+2*0.04 0.01+0.5*0.04 0.01+0.3*0.04 0.01+1*0.04]
 gamma = freq./B0;
 conc = [8 4 1 0.5 0.25];
 h1 = figure('Color', 'white');
@@ -143,14 +145,75 @@ export_fig(h10, 'T2_CPMGres_filt_diff_Rsq.pdf')
 T2_star_list = dir ('T2_star*.csv');
 h11 = figure('PaperOrientation', 'landscape','position', pos, 'Color', 'white');
 for i=1:length(T2_star_list)
-    [T2_star_results(i,1), T2_star_results(i,2), T2_star_results(i,3), T2_star_results(i,4)] = T2_star(T2_star_list(i).name, i, 7);
+    [T2_star_results7(i,1), T2_star_results7(i,2), T2_star_results7(i,3), T2_star_results7(i,4)] = T2_star(T2_star_list(i).name, i, 7);
 end
 
 %%% we are going to plot T_2_star as function of concentration
 subplot (2,3,i+1)
-plot (T2_star_results(:,4), T2_star_results(:,2), 'o');
+plot (T2_star_results7(:,4), T2_star_results7(:,2), 'o');
+title ('{T_2}^* as function of concentration of CuSo_4 filtered 7p');
+xlabel('Concentration, perc');
+ylabel('{T_2}^*, [sec]');
+export_fig (h11, 'T2starres_f7.pdf');
+
+T2_star_list = dir ('T2_star*.csv');
+h12 = figure('PaperOrientation', 'landscape','position', pos, 'Color', 'white');
+for i=1:length(T2_star_list)
+    [T2_star_results5(i,1), T2_star_results5(i,2), T2_star_results5(i,3), T2_star_results5(i,4)] = T2_star(T2_star_list(i).name, i, 5);
+end
+
+%%% we are going to plot T_2_star as function of concentration
+subplot (2,3,i+1)
+plot (T2_star_results5(:,4), T2_star_results5(:,2), 'o');
+title ('{T_2}^* as function of concentration of CuSo_4 filtered 5p');
+xlabel('Concentration, perc');
+ylabel('{T_2}^*, [sec]');
+export_fig (h12, 'T2starres_f5.pdf');
+
+
+
+T2_star_list = dir ('T2_star*.csv');
+h13 = figure('PaperOrientation', 'landscape','position', pos, 'Color', 'white');
+for i=1:length(T2_star_list)
+    [T2_star_results3(i,1), T2_star_results3(i,2), T2_star_results3(i,3), T2_star_results3(i,4)] = T2_star(T2_star_list(i).name, i, 3);
+end
+
+%%% we are going to plot T_2_star as function of concentration
+subplot (2,3,i+1)
+plot (T2_star_results3(:,4), T2_star_results3(:,2), 'o');
 title ('{T_2}^* as function of concentration of CuSo_4 filtered 3p');
 xlabel('Concentration, perc');
 ylabel('{T_2}^*, [sec]');
-export_fig (h11, 'T2starres_f3.pdf');
+export_fig (h12, 'T2starres_f3.pdf');
 
+
+h14 = figure('Color', 'white');
+
+plot(T2_star_results(:,4), T2_star_results(:,3), '-or');
+hold on;
+plot(T2_star_results3(:,4), T2_star_results3(:,3), '-ok');
+plot(T2_star_results5(:,4), T2_star_results5(:,3), '-ob');
+plot(T2_star_results7(:,4), T2_star_results7(:,3), '-og');
+legend('not filtered data', 'moving average 3 points', 'moving average 5 points', 'moving average 7 points', 'Location', 'NE')
+title ('{T_2}^* fit goodness as function of concentration of CuSo_4 with various filter length');
+xlabel('Concentration, perc');
+ylabel('R^2');
+export_fig(h14, 'T2_star_res_filt_diff_Rsq.pdf')
+
+h15 = figure('Color', 'white');
+
+plot(T2_star_results(:,4), T2_star_results(:,2), '-or');
+hold on;
+plot(T2_star_results3(:,4), T2_star_results3(:,2), '-ok');
+plot(T2_star_results5(:,4), T2_star_results5(:,2), '-ob');
+plot(T2_star_results7(:,4), T2_star_results7(:,2), '-og');
+legend('not filtered data', 'moving average 3 points', 'moving average 5 points', 'moving average 7 points', 'Location', 'NE')
+title ('{T_2}^* as function of concentration of CuSo_4 with various filter length');
+xlabel('Concentration, perc');
+ylabel('{T_2}^*, [sec]');
+export_fig(h15, 'T2_star_res_filt_diff.pdf')
+
+
+%%%% Errors calculation
+
+delta_gamma = sqrt(freq_err.^2./B0.^2+B_err.^2.*(freq./B0).^2)
