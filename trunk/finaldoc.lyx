@@ -68,7 +68,7 @@ Relaxation time calculation results
 \end_layout
 
 \begin_layout Standard
-During the results processing the following relaxation times were calculated:
+During the results processing, the following relaxation times were calculated:
  
 \begin_inset Formula $T_{1},\, T_{2},\, T_{2}^{*}$
 \end_inset
@@ -77,7 +77,7 @@ During the results processing the following relaxation times were calculated:
 \begin_inset Formula $\gamma$
 \end_inset
 
-.
+ was evaluated.
  We will cover up shortly the calculation process for each one of them:
 \end_layout
 
@@ -87,7 +87,8 @@ firstly, the gyromagnetic ratio was calculated out of the given experiment
 \begin_inset Formula $\omega_{o}$
 \end_inset
 
- (the Larmor percession frequency) was found by the following formula: 
+ (the Larmor precession frequency) was found, by the following formula:
+ 
 \begin_inset Formula $\gamma=\frac{\omega_{0}}{B_{0}}$
 \end_inset
 
@@ -331,7 +332,7 @@ Noise
 As the following results predict there is no actual way to model the noise
  distribution due to low sensitivity of oscilloscope comparing with the
  noise levels.
- No autocorrelation is observed as well.
+ No auto-correlation was observed as well.
  Thus the only use of the raw noise data could be by evaluating the zero-offset
  of the data by calculating the mean noise level, when 
 \begin_inset Formula $t\rightarrow\infty$
@@ -342,9 +343,9 @@ As the following results predict there is no actual way to model the noise
  for example moving average filter) could improve the SNR, yet in this case
  one may think the resulting values are affected as well.
  Interestingly as it could be seen in the results, while applying moving
- average filter on the CPMG results, as the filter length grows and its
- smoothing features being emphasized and the fit goodness is improved significan
-tly only the tiniest change in 
+ average filter on the CPMG results, as the filter length grows its smoothing
+ features being emphasized and the fit goodness is improved significantly,
+ only the tiniest change in 
 \begin_inset Formula $T_{2}$
 \end_inset
 
@@ -358,10 +359,10 @@ In the same time the usage of MA-filter (LP FIR) has an another effect on
 \end_inset
 
  experiment results.
- Here both the fit goodness and the measured values remained almost intact.
- The possible cause for this is the error source in this experiment, which
- does not probably find its source in the oscilloscope noises and sampling
- errors.
+ Here both the fit goodness and the measured values distribution remained
+ almost intact.
+ The possible cause for this is the error in this experiment, which does
+ not probably find its source in the oscilloscope noises and sampling errors.
 \begin_inset Float figure
 wide false
 sideways false
@@ -1977,7 +1978,7 @@ As we have seen as the concentration of
 \begin_inset Formula $\mbox{CuSO}_{4}$
 \end_inset
 
-increases the values of 
+ increases the values of 
 \begin_inset Formula $T_{1}$
 \end_inset
 
@@ -2001,7 +2002,7 @@ increases the values of
  and the solution concentration.
  The result is obvious due to the facts that gyromagnetic ratio is constant
  for each imaged atom (
-\begin_inset Formula $\mbox{Hg}$
+\begin_inset Formula $\mbox{H}$
 \end_inset
 
  in our case).
@@ -2009,9 +2010,20 @@ increases the values of
 \begin_inset Formula $T_{2}^{*}$
 \end_inset
 
- is solely related to the magnet inhomogenity defined by its properties.
+ is solely related to the magnet inhomogeneity defined by its properties.
  Yet it could be seen that there is a connection between these 2 values,
  the fact that remains to be explained.
+\end_layout
+
+\begin_layout Section
+Q&A
+\end_layout
+
+\begin_layout Itemize
+One of the possible causes of FID results distortion could be a receiver
+ dead time: the influence of the transmitted RF signal on the receiver.
+ The other possible reasons include RF field inhomogeneity which results
+ in choosing not-exact demodulation frequency.
 \end_layout
 
 \end_body
